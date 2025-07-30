@@ -8,7 +8,7 @@ import com.lukas.app.filter.AuthFilter;
 import com.lukas.app.filter.LoggingFilter;
 
 @Configuration
-public class FilterConfig {
+public class Config {
 
 	@Bean
 	FilterRegistrationBean<AuthFilter> authFilter() {

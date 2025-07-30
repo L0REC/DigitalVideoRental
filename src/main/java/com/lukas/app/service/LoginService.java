@@ -1,37 +1,34 @@
 package com.lukas.app.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.lukas.app.domain.User;
+import com.lukas.app.mapper.UserMapper;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 public class LoginService {
 
-	private Map<String, String> userTable;
+	private final UserMapper userMapper;
 	
-	//placeholder until DB integration
-	public LoginService() {
-		userTable = new HashMap<>();
-		userTable.put("user", "pass");
-	}
-	private static final Logger logger = LoggerFactory.getLogger(LoginService.class);
-	
+	//check if provided login creds are valid
 	public boolean checkIdAndPass(String loginId, String pass) {
-		String authPass = userTable.get(loginId);
-		
-		if(authPass == null) {
-			logger.warn("不正なログイン ID");
+		if(loginId == null || pass == null || 
+			loginId.trim().isEmpty() || pass.trim().isEmpty()) {
 			return false;
 		}
 		
-		if(!pass.equals(authPass)) {
-			logger.warn("不正なパスワード");
-			return false;
-		}
+		//find user with matching username and password
+		User user = userMapper.findByUsernameAndPassword(loginId, pass);
 		
-		return true;
-    }
+		//null check
+		if(user == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 }
