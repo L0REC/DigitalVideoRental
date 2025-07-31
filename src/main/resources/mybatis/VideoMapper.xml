@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lukas.app.mapper.VideoMapper">
+
+	<resultMap id="VideoResultMap" type="com.example.app.domain.Video" >
+		<id column="id" property="id" />
+		<result column="title" property="title" />
+		<result column="description" property="description" />
+		<result column="genre" property="genre" />
+		<result column="director" property="director" />
+		<result column="cast" property="cast" />
+		<result column="release_year" property="release" />
+		<result column="" property="duration" />
+		<result column="" property="rating" />
+	</resultMap>
+	
+	<select id="selectVideos" resultMap="VideoResultMap">
+		SELECT
+			id,
+			title,
+			description,
+			genre,
+			director,
+			cast,
+			release_year,
+			duration,
+			rating
+		FROM videos
+	</select>
+</mapper>
