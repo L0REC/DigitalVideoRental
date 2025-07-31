@@ -26,6 +26,7 @@ public class AuthFilter implements Filter {
 		if(req.getSession().getAttribute("loginId") == null) {
 			logger.warn("不正なアクセス");
 			res.sendRedirect("/login");
+			return;
 		}
 		
 		chain.doFilter(request, response);
