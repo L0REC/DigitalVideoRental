@@ -11,4 +11,5 @@ public interface VideoMapper {
 
 	List<Video> selectVideos();
 	
+	List<Video> selectVideos(String title);
 }

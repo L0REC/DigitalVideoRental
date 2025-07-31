@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>カタログ</title>
+</head>
+<body>
+<h1>カタログ</h1>
+
+<form th:action="@{/cataloque/search}">
+	<p>
+		<input type="text" name="title" placeholder="タイトル">
+		<input type="submit" name="titleButton" value="タイトルで絞り込み">
+	</p>
+</form>
+
+<h2 th:if="${searchedBy}">「[[${searchedBy}]]」で絞り込み中</h2>
+
+<table border="1">
+	<tr>
+		<th>ID</th>
+		<th>タイトル</th>
+		<th>あらすじ</th>
+		<th>ジャンル</th>
+		<th>監督</th>
+		<th>出演者</th>
+		<th>公開日</th>
+		<th>上映時間</th>
+		<th>評価</th>
+	</tr>
+	<tr th:each="video : ${videos}">
+		<td>[[${video.id}]]</td>
+		<td>[[${video.title}]]</td>
+		<td>[[${video.description}]]</td>
+		<td>[[${video.genre}]]</td>
+		<td>[[${video.director}]]</td>
+		<td>[[${video.cast}]]</td>
+		<td>[[${video.release}]]</td>
+		<td>[[${video.duration}]]</td>
+		<td>[[${video.rating}]]</td>
+	</tr>
+</table>
+<p><a th:href="@{/user/dashboard}">戻る</a></p>
+</body>
+</html>
