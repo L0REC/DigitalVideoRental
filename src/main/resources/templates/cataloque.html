@@ -1,46 +1,83 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>カタログ</title>
-<link th:href="@{/css/style.css}" rel="stylesheet">
+	<meta charset="UTF-8">
+	<title>カタログ</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
-<h1>カタログ</h1>
+	<div class="container">
+		<h1>カタログ</h1>
 
-<form th:action="@{/cataloque/search}">
-	<p>
-		<input type="text" name="title" placeholder="タイトル">
-		<input type="submit" name="titleButton" value="タイトルで絞り込み">
-	</p>
-</form>
+		<form th:action="@{/cataloque/search}">
+			<p>
+				<input type="text" name="title" placeholder="タイトル">
+				<input type="submit" name="titleButton" value="タイトルで絞り込み">
+			</p>
+		</form>
 
-<h3 th:if="${searchedBy}">「[[${searchedBy}]]」で絞り込み中</h3>
+		<h3 th:if="${searchedBy}">「[[${searchedBy}]]」で絞り込み中</h3>
 
-<table border="1">
-	<tr>
-		<th>ID</th>
-		<th>タイトル</th>
-		<th>あらすじ</th>
-		<th>ジャンル</th>
-		<th>監督</th>
-		<th>出演者</th>
-		<th>公開日</th>
-		<th>上映時間</th>
-		<th>評価</th>
-	</tr>
-	<tr th:each="video : ${videos}">
-		<td>[[${video.id}]]</td>
-		<td>[[${video.title}]]</td>
-		<td>[[${video.description}]]</td>
-		<td>[[${video.genre}]]</td>
-		<td>[[${video.director}]]</td>
-		<td>[[${video.cast}]]</td>
-		<td>[[${video.release}]]</td>
-		<td>[[${video.duration}]]</td>
-		<td>[[${video.rating}]]</td>
-	</tr>
-</table>
-<p><a th:href="@{/user/dashboard}">戻る</a></p>
+		<table border="1">
+			<tr>
+				<th>ID</th>
+				<th>タイトル</th>
+				<th>あらすじ</th>
+				<th>ジャンル</th>
+				<th>監督</th>
+				<th>出演者</th>
+				<th>公開日</th>
+				<th>上映時間</th>
+				<th>評価</th>
+			</tr>
+			<tr th:each="video : ${videos}">
+				<td>[[${video.id}]]</td>
+				<td>[[${video.title}]]</td>
+				<td>[[${video.description}]]</td>
+				<td>[[${video.genre}]]</td>
+				<td>[[${video.director}]]</td>
+				<td>[[${video.cast}]]</td>
+				<td>[[${video.release}]]</td>
+				<td>[[${video.duration}]]</td>
+				<td>[[${video.rating}]]</td>
+			</tr>
+		</table>
+
+		<!--ページネーションスタート-->
+		<div th:if="${totalPages >= 2}" class="container">
+			<ul class="pagination">
+				<!--前のページへ-->
+				<th:block th:switch="${page}">
+					<li th:case="1" class="page-item disabled">
+						<a class="page-link" href="">&laquo;</a>
+					</li>
+					<li th:case="*" class="page-item">
+						<a class="page-link" th:href="@{/cataloque(page=${page - 1})}">&laquo;</a>
+					</li>
+				</th:block>
+
+				<!--ページ番号-->
+				<th:block th:each="index : ${#numbers.sequence(1, totalPages)}">
+					<th:block th:switch="${index}">
+						<li th:case="${page}" class="page-item active">
+							<a class="page-link" href="">[[${index}]]</a>
+						</li>
+						<li th:case="*" class="page-item">
+							<a class="page-link" th:href="@{/cataloque(page=${index})}">[[${index}]]</a>
+						</li>
+					</th:block>
+				</th:block>
+
+				<!--次のページへ-->
+				<th:block th:switch="${page}">
+					<li th:case="${totalPages}" class="page-item disabled">
+						<a class="page-link" th:href="@{/cataloque(page=${page + 1})}">&raquo;</a>
+					</li>
+				</th:block>
+		</div>
+		<p><a th:href="@{/user/dashboard}">戻る</a></p>
+	</div>
 </body>
+
 </html>
