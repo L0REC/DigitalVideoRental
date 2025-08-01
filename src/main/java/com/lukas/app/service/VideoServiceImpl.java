@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.lukas.app.domain.Video;
-import com.lukas.app.mapper.VideoMapper;
+import com.lukas.app.repository.VideoMapper;
 
 import lombok.RequiredArgsConstructor;
 

@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.lukas.app.mapper")
+@MapperScan("com.lukas.app.repository")
 public class DigitalVideoRentalApplication {
 
 	public static void main(String[] args) {

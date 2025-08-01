@@ -1,4 +1,4 @@
-package com.lukas.app.mapper;
+package com.lukas.app.repository;
 
 import java.util.List;
 

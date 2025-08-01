@@ -3,7 +3,7 @@ package com.lukas.app.service;
 import org.springframework.stereotype.Service;
 
 import com.lukas.app.domain.User;
-import com.lukas.app.mapper.UserMapper;
+import com.lukas.app.repository.UserMapper;
 
 import lombok.RequiredArgsConstructor;
 
