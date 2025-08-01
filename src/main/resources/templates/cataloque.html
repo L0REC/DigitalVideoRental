@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>カタログ</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
 <h1>カタログ</h1>
@@ -14,7 +15,7 @@
 	</p>
 </form>
 
-<h2 th:if="${searchedBy}">「[[${searchedBy}]]」で絞り込み中</h2>
+<h3 th:if="${searchedBy}">「[[${searchedBy}]]」で絞り込み中</h3>
 
 <table border="1">
 	<tr>
