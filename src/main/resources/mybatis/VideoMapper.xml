@@ -16,16 +16,19 @@
 	</resultMap>
 	
 	<select id="selectVideos" resultMap="VideoResultMap">
-		SELECT
-			id,
-			title,
-			description,
-			genre,
-			director,
-			cast,
-			release_year,
-			duration,
-			rating
-		FROM videos
+		<![CDATA[
+			SELECT
+				id,
+				title,
+				description,
+				genre,
+				director,
+				cast,
+				release_year,
+				duration,
+				rating
+			FROM videos
+			WHERE title LIKE CONCAT('%', #{title}, '%')
+		]]>
 	</select>
 </mapper>
