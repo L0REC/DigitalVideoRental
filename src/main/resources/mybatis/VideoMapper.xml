@@ -31,4 +31,24 @@
 			WHERE title LIKE CONCAT('%', #{title}, '%')
 		]]>
 	</select>
+	
+	<select id="selectLimited" resultMap="VideoResultMap">
+			SELECT
+				id,
+				title,
+				description,
+				genre,
+				director,
+				cast,
+				release_year,
+				duration,
+				rating
+			FROM videos
+			LIMIT #{offset}, #{limit}
+	</select>
+	
+	<select id="count" resultType="long">
+		SELECT COUNT(*) FROM videos
+	</select>
+	
 </mapper>

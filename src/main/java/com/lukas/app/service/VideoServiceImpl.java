@@ -26,4 +26,16 @@ public class VideoServiceImpl implements VideoService {
 		return videoMapper.selectVideos(title);
 	}
 
+	@Override
+	public List<Video> getVideoListByPage(int page, int numPerPage) {
+		int offset = numPerPage * (page - 1);
+		return videoMapper.selectLimited(offset, numPerPage);
+	}
+
+	@Override
+	public int getTotalPages(int numPerPage) {
+		double totalNum =(double) videoMapper.count();
+		return (int) Math.ceil(totalNum / numPerPage);
+	}
+
 }

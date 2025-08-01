@@ -9,4 +9,7 @@ public interface VideoService {
 	List<Video> searchAll();
 	List<Video> searchByTitle(String title);
 	
+	//ページ分割機能用
+	List<Video> getVideoListByPage(int page, int numPerPage);
+	int getTotalPages(int numPerPage);
 }

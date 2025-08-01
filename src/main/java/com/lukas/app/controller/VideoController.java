@@ -17,9 +17,17 @@ public class VideoController {
 
 	private final VideoService service;
 	
+	// 1 ページ当たりの表示人数
+	private final int NUM_PER_PAGE = 3;
+	
+	
 	@GetMapping
-	public String all(Model model) {
-		model.addAttribute("videos", service.searchAll());
+	public String all(
+			@RequestParam(name = "page", defaultValue = "1") Integer page,
+			Model model) {
+		model.addAttribute("videos", service.getVideoListByPage(page, NUM_PER_PAGE));
+		model.addAttribute("page", page);
+		model.addAttribute("totalPages", service.getTotalPages(NUM_PER_PAGE));
 		return "cataloque";
 	}
 	
