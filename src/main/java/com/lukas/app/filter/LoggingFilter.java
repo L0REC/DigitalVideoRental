@@ -1,7 +1,6 @@
 package com.lukas.app.filter;
 
 import java.io.IOException;
-import java.time.ZonedDateTime;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -23,8 +22,6 @@ public class LoggingFilter implements Filter {
 		var req = (HttpServletRequest) request;
 
 		logger.info("{}: {}", req.getMethod(), req.getRequestURI());
-		logger.info("リクエスト:{}", ZonedDateTime.now());
 		chain.doFilter(request, response);
-		logger.info("レスポンス:{}", ZonedDateTime.now());
 	}
 }
