@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.lukas.app.domain.User;
 import com.lukas.app.repository.UserMapper;
 
+import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -13,22 +14,15 @@ public class LoginService {
 
 	private final UserMapper userMapper;
 	
-	//check if provided login creds are valid
 	public boolean checkIdAndPass(String loginId, String pass) {
-		if(loginId == null || pass == null || 
-			loginId.trim().isEmpty() || pass.trim().isEmpty()) {
+		if(StringUtils.isBlank(loginId) || StringUtils.isBlank(pass)) {
 			return false;
 		}
 		
-		//find user with matching username and password
 		User user = userMapper.findByUsernameAndPassword(loginId, pass);
 		
-		//null check
-		if(user == null) {
-			return false;
-		} else {
-			return true;
-		}
+		return user != null;
+		
 	}
 
 }
