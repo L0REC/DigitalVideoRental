@@ -1,5 +1,6 @@
 package com.lukas.app.service;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.lukas.app.domain.User;
@@ -14,13 +15,20 @@ public class LoginService {
 
 	private final UserMapper userMapper;
 	
+	
 	public User checkIdAndPass(String loginId, String pass) {
 		if(StringUtils.isBlank(loginId) || StringUtils.isBlank(pass)) {
 			return null;
 		}
 		
-		return userMapper.findByUsernameAndPassword(loginId, pass);
+		User user = userMapper.findByUsername(loginId, pass);
+		if(user == null) {
+			return null;
+		}
 		
+		if(BCrypt.checkpw(pass, user.getPasswordHash())) {
+			return user;
+		}
+		return null;
 	}
-
 }

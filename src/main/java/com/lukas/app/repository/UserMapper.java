@@ -8,6 +8,6 @@ import com.lukas.app.domain.User;
 @Mapper
 public interface UserMapper {
 
-	User findByUsernameAndPassword(@Param("loginId") String username,
+	User findByUsername(@Param("loginId") String username,
 			@Param("pass") String pass);
 }

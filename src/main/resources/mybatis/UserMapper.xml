@@ -13,7 +13,7 @@
 		<result column="last_login" property="lastLogin" />
 	</resultMap>
 	
-	<select id="findByUsernameAndPassword" resultMap="UserResultMap">
+	<select id="findByUsername" resultMap="UserResultMap">
 			SELECT
 				id,
             	username,
@@ -24,6 +24,5 @@
             	last_login
 			FROM users
 			WHERE username = #{loginId}
-			AND password_hash = #{pass}
 	</select>
 </mapper>
