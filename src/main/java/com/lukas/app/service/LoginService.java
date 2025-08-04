@@ -14,14 +14,12 @@ public class LoginService {
 
 	private final UserMapper userMapper;
 	
-	public boolean checkIdAndPass(String loginId, String pass) {
+	public User checkIdAndPass(String loginId, String pass) {
 		if(StringUtils.isBlank(loginId) || StringUtils.isBlank(pass)) {
-			return false;
+			return null;
 		}
 		
-		User user = userMapper.findByUsernameAndPassword(loginId, pass);
-		
-		return user != null;
+		return userMapper.findByUsernameAndPassword(loginId, pass);
 		
 	}
 

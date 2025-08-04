@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>User Dashboard</title>
+	<meta charset="UTF-8">
+	<title>User Dashboard</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
+
 <body>
-<p><strong>Dashboard</strong></p>
-<p>ユーザーID: [[${session.loginId}]]</p>
-<p><a th:href="@{/cataloque}">カタログへ</a></p>
-<p><a th:href="@{/logout}">ログアウト</a></p>
+	<div class="container">
+		<h1><strong>Dashboard</strong></h1>
+		<p>ユーザーID: [[${session.loginId}]]</p>
+		<p th:if="${session.user != null}">タイプ: [[${session.user.role.name()}]]</p>
+		
+		<div th:if="${session.user != null and session.user.role.name() == 'Admin'}">
+			<h1>Hello</h1>
+		</div>
+		<p><a th:href="@{/cataloque}">カタログへ</a></p>
+		<p><a th:href="@{/logout}">ログアウト</a></p>
+	</div>
 </body>
+
 </html>
