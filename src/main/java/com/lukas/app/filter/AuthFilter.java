@@ -21,7 +21,7 @@ public class AuthFilter implements Filter {
 		var req = (HttpServletRequest) request;
 		var res = (HttpServletResponse) response;
 
-		if (req.getSession().getAttribute("loginId") == null) {
+		if (req.getSession().getAttribute("user") == null) {
 			log.warn("不正なアクセス");
 			res.sendRedirect("/login");
 			return;

@@ -37,7 +37,6 @@ public class AuthController {
 		}
 
 		session.setAttribute("user", user);
-		session.setAttribute("loginId", loginId);
 		return "redirect:/user/dashboard";
 	}
 
