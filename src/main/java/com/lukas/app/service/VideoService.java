@@ -12,4 +12,6 @@ public interface VideoService {
 	//ページ分割機能用
 	List<Video> getVideoListByPage(int page, int numPerPage);
 	int getTotalPages(int numPerPage);
+	
+	void save(Video video);
 }

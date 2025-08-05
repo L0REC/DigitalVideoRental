@@ -18,4 +18,6 @@ public interface VideoMapper {
 	List<Video> selectLimited(@Param("offset") int offset,
 							  @Param("limit") int limit);
 	Long count();
+	
+	void addVideo(Video video);
 }

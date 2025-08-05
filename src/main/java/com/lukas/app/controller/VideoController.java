@@ -1,11 +1,16 @@
 package com.lukas.app.controller;
 
+import jakarta.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lukas.app.domain.Video;
 import com.lukas.app.service.VideoService;
 
 import lombok.RequiredArgsConstructor;
@@ -44,6 +49,23 @@ public class VideoController {
 			model.addAttribute("videos", service.searchByTitle(title));
 		} 
 		return "catalog";
+	}
+	
+	@GetMapping("/add")
+	public String add(Model model) {
+		Video video = new Video();
+		model.addAttribute("video", video);
+		return "addVideo";
+	}
+	
+	@PostMapping("/add")
+	public String add(@Valid Video video, Errors errors) {
+		if (errors.hasErrors()) {
+			return "addVideo";
+		}
+		
+		service.save(video);
+		return "redirect:/catalog";
 	}
 }
 

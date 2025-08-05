@@ -15,8 +15,8 @@
 		<p th:if="${session.user != null}">タイプ: [[${session.user.role.name()}]]</p>
 		
 		<div th:if="${session.user != null and session.user.role.name() == 'Admin'}">
-			<h1>Hello <!--add/remove videos/users logic-->
-				
+			<h1><!--add/remove videos/users logic-->
+				<p><a th:href="@{/catalog/add}">動画の追加</a></p>
 				
 				
 			</h1>

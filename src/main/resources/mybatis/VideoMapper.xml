@@ -49,4 +49,11 @@
 		SELECT COUNT(*) FROM videos
 	</select>
 	
+	<insert id="addVideo" parameterType="com.lukas.app.domain.Video">
+		INSERT INTO videos
+			(title, description, genre, director, cast, release_year, duration, rating)
+		VALUES
+			(#{title}, #{description}, #{genre}, #{director}, #{cast}, #{release}, #{duration}, #{rating})
+	</insert>
+	
 </mapper>

@@ -37,5 +37,9 @@ public class VideoServiceImpl implements VideoService {
 		double totalNum =(double) videoMapper.count();
 		return (int) Math.ceil(totalNum / numPerPage);
 	}
+	
+	@Override
+	public void save(Video video) {
+		videoMapper.addVideo(video);}
 
 }

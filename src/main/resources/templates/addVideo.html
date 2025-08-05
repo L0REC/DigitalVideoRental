@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>動画の追加</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+		<h1>動画の追加</h1>
+
+		<form action="" method="post" th:object="${video}">
+			<span th:errors="*{title}" class="error"></span>
+			<p>タイトル: <input type="text" th:field="*{title}"></p>
+
+			<span th:errors="*{description}" class="error"></span>
+			<p>説明: <input type="text" th:field="*{description}"></p>
+
+			<span th:errors="*{genre}" class="error"></span>
+			<p>ジャンル: <input type="text" th:field="*{genre}"></p>
+
+			<span th:errors="*{director}" class="error"></span>
+			<p>監督名: <input type="text" th:field="*{director}"></p>
+
+			<span th:errors="*{cast}" class="error"></span>
+			<p>出演者: <input type="text" th:field="*{cast}"></p>
+
+			<span th:errors="*{release}" class="error"></span>
+			<p>公開年: <input type="number" th:field="*{release}" min="1900" max="2100" required></p>
+
+			<span th:errors="*{duration}" class="error"></span>
+			<p>上映時間: <input type="number" th:field="*{duration}"></p>
+
+			<span th:errors="*{rating}" class="error"></span>
+			<p>評価: <input type="number" th:field="*{rating}" min="0" max="10" step="0.1" required></p>
+
+			<input type="submit">
+		</form>
+
+		<p><a th:href="@{/catalog}">戻る</a></p>
+	</div>
+</body>
+
+</html>
