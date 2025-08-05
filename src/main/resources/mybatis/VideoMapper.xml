@@ -16,7 +16,6 @@
 	</resultMap>
 	
 	<select id="selectVideos" resultMap="VideoResultMap">
-		<![CDATA[
 			SELECT
 				id,
 				title,
@@ -29,7 +28,6 @@
 				rating
 			FROM videos
 			WHERE title LIKE CONCAT('%', #{title}, '%')
-		]]>
 	</select>
 	
 	<select id="selectLimited" resultMap="VideoResultMap">
