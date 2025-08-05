@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/cataloque")
+@RequestMapping("/catalog")
 public class VideoController {
 
 	private final VideoService service;
@@ -28,7 +28,7 @@ public class VideoController {
 		model.addAttribute("videos", service.getVideoListByPage(page, NUM_PER_PAGE));
 		model.addAttribute("page", page);
 		model.addAttribute("totalPages", service.getTotalPages(NUM_PER_PAGE));
-		return "cataloque";
+		return "catalog";
 	}
 	
 	@GetMapping("/search")
@@ -38,12 +38,12 @@ public class VideoController {
 			Model model) {
 		if(titleButton != null) {
 			if(title.isBlank()) {
-				return "redirect:/cataloque";
+				return "redirect:/catalog";
 			}
 			model.addAttribute("searchedBy", title);
 			model.addAttribute("videos", service.searchByTitle(title));
 		} 
-		return "cataloque";
+		return "catalog";
 	}
 }
 
