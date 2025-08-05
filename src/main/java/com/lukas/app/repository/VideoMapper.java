@@ -20,4 +20,6 @@ public interface VideoMapper {
 	Long count();
 	
 	void addVideo(Video video);
+	
+	void rmVideo(Integer id);
 }

@@ -56,4 +56,8 @@
 			(#{title}, #{description}, #{genre}, #{director}, #{cast}, #{release}, #{duration}, #{rating})
 	</insert>
 	
+	<delete id="rmVideo" parameterType="int">
+		DELETE FROM videos WHERE id = #{id}
+	</delete>
+	
 </mapper>

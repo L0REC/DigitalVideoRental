@@ -3,6 +3,7 @@ package com.lukas.app.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lukas.app.domain.Video;
 import com.lukas.app.repository.VideoMapper;
@@ -10,6 +11,7 @@ import com.lukas.app.repository.VideoMapper;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 @RequiredArgsConstructor
 public class VideoServiceImpl implements VideoService {
 
@@ -40,6 +42,12 @@ public class VideoServiceImpl implements VideoService {
 	
 	@Override
 	public void save(Video video) {
-		videoMapper.addVideo(video);}
+		videoMapper.addVideo(video);
+	}
+	
+	@Override
+	public void remove(Integer id) {
+		videoMapper.rmVideo(id);
+	}
 
 }

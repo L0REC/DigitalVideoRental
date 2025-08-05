@@ -14,4 +14,6 @@ public interface VideoService {
 	int getTotalPages(int numPerPage);
 	
 	void save(Video video);
+	
+	void remove(Integer id);
 }
