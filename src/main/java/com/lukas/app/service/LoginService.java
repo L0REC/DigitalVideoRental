@@ -22,7 +22,7 @@ public class LoginService {
 		}
 		
 		User user = userMapper.findByUsername(loginId);
-		if(user != null && BCrypt.checkpw(pass, user.getPasswordHash())) {
+		if(user != null && BCrypt.checkpw(pass, user.getPassword())) {
 			return user;
 		}
 		return null;

@@ -7,7 +7,7 @@
 		<id column="id" property="id" />
 		<result column="username" property="username" />
 		<result column="email" property="email" />
-		<result column="password_hash" property="passwordHash" />
+		<result column="password_hash" property="password" />
 		<result column="role" property="role" javaType="com.lukas.app.domain.Role"/>
 		<result column="created_at" property="created" />
 		<result column="last_login" property="lastLogin" />
