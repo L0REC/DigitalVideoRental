@@ -13,7 +13,7 @@ public class Config {
 	@Bean
 	FilterRegistrationBean<AuthFilter> authFilter() {
 		var filter = new FilterRegistrationBean<>(new AuthFilter());
-		filter.addUrlPatterns("/user/*", "/catalog");
+		filter.addUrlPatterns("/user/*", "/catalog/*");
 		filter.setOrder(2);
 		return filter;
 	}
