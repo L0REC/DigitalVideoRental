@@ -57,13 +57,13 @@ public class VideoController {
 	public String add(Model model) {
 		Video video = new Video();
 		model.addAttribute("video", video);
-		return "addVideo";
+		return "add_video";
 	}
 	
 	@PostMapping("/add")
 	public String add(@Valid Video video, Errors errors) {
 		if (errors.hasErrors()) {
-			return "addVideo";
+			return "add_video";
 		}
 		
 		service.save(video);
