@@ -21,7 +21,10 @@ public class LoggingFilter implements Filter {
 			throws IOException, ServletException {
 		var req = (HttpServletRequest) request;
 
-		log.info("{}: {}", req.getMethod(), req.getRequestURI());
+		String uri = req.getRequestURI();
+		if(!uri.endsWith(".css") && !uri.endsWith(".js") && !uri.endsWith(".ico") && !uri.endsWith(".png") && !uri.endsWith(".jpg") && !uri.endsWith(".gif")) {
+			log.info("{}: {}", req.getMethod(), uri);			
+		}
 		chain.doFilter(request, response);
 	}
 }
