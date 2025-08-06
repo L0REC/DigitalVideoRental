@@ -37,7 +37,7 @@ public class AuthController {
 		}
 
 		session.setAttribute("user", user);
-		return "redirect:/user/dashboard";
+		return "redirect:/dashboard";
 	}
 
 	@GetMapping("/logout")
