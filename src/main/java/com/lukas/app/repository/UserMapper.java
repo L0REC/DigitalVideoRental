@@ -9,4 +9,6 @@ import com.lukas.app.domain.User;
 public interface UserMapper {
 
 	User findByUsername(@Param("loginId") String username);
+	
+	void addUser(User user);
 }

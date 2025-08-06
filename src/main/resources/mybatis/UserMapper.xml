@@ -25,4 +25,10 @@
 			FROM users
 			WHERE username = #{loginId}
 	</select>
+	
+	<insert id="addUser" parameterType="com.lukas.app.domain.User" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO users (username, email, password_hash, role, created_at)
+		VALUES (#{username}, #{email}, #{password},'User', NOW())
+	</insert>
+	
 </mapper>
