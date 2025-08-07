@@ -19,9 +19,9 @@
 				<p><a th:href="@{/catalog/add}">動画の追加</a></p>
 			</h1>
 		</div>
-		<h3>Activity</h3>
-		<p></p><table>
-			<tr>
+		<h3>Recent Activity</h3>
+		<table>
+			<tr th:each="activity : ${activities}">
 				<th>タイプ</th>
 				<th>日付</th>
 			</tr>
@@ -29,7 +29,7 @@
 				<td>Type</td>
 				<td>Date</td>
 			</tr>
-		</table></p>
+		</table>
 		<p><a th:href="@{/catalog}">カタログへ</a></p>
 		<p><a th:href="@{/logout}">ログアウト</a></p>
 	</div>
