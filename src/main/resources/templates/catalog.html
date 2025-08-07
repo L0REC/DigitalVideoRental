@@ -44,7 +44,7 @@
 				<td>[[${video.duration}]]</td>
 				<td>[[${video.rating}]]</td>
 				<td th:if="${session.user != null and session.user.role.name() == 'Admin'}">
-					<a th:href="@{/catalog/remove/{id}(id=${video.id})}" th:data-name="${video.title}"
+					<a th:href="@{/catalog/remove/{id}(id=${video.id})}" th:data-title="${video.title}"
 						class="btn btn-danger delete">削除
 					</a>
 				</td>
@@ -93,7 +93,7 @@
 	document.addEventListener("DOMContentLoaded", function () {
 		document.querySelectorAll(".delete").forEach(btn => {
 			btn.addEventListener("click", function (e) {
-				const name = this.dataset.name;
+				const title = this.dataset.title;
 				if (!confirm(`「${title}」を削除します。よろしいですか？`)) {
 					e.preventDefault();
 				}
