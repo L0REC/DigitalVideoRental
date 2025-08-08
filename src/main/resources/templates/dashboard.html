@@ -19,15 +19,12 @@
 				<p><a th:href="@{/catalog/add}">動画の追加</a></p>
 			</h1>
 		</div>
-		<h3>Recent Activity</h3>
+		<h4>Recent Activity</h4>
 		<table>
 			<tr th:each="activity : ${activities}">
-				<th>タイプ</th>
-				<th>日付</th>
-			</tr>
-			<tr>
-				<td>Type</td>
-				<td>Date</td>
+				<td th:text="${#temporals.format(activity.createdAt, 'MMM dd, HH:mm')}"></td>
+				<td th:text="${activity.type}"></td>
+				<td th:text="${activity.details}"></td>
 			</tr>
 		</table>
 		<p><a th:href="@{/catalog}">カタログへ</a></p>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lukas.app.domain.User;
+import com.lukas.app.service.ActivityService;
 import com.lukas.app.service.LoginService;
 
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class AuthController {
 
 	private final LoginService service;
+	private final ActivityService activityService;
 	
 	@GetMapping("/login")
 	public String showLoginForm() {
@@ -37,6 +39,7 @@ public class AuthController {
 		}
 
 		session.setAttribute("user", user);
+		activityService.logActivity(user, "LOGIN", "ユーザーはログインしました");
 		return "redirect:/dashboard";
 	}
 
