@@ -4,7 +4,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.lukas.app.domain.User;
-import com.lukas.app.repository.UserMapper;
+import com.lukas.app.mapper.UserMapper;
 
 import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;

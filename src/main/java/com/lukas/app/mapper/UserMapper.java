@@ -1,4 +1,4 @@
-package com.lukas.app.repository;
+package com.lukas.app.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

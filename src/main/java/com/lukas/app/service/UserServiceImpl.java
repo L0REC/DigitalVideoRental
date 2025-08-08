@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lukas.app.domain.User;
-import com.lukas.app.repository.UserMapper;
+import com.lukas.app.mapper.UserMapper;
 
 import lombok.RequiredArgsConstructor;
 
