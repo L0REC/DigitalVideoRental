@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lukas.app.domain.Video;
-import com.lukas.app.repository.VideoMapper;
+import com.lukas.app.mapper.VideoMapper;
 
 import lombok.RequiredArgsConstructor;
 
