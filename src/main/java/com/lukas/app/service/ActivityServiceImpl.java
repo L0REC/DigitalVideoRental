@@ -24,6 +24,7 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 
 	@Override
+	@Deprecated
 	public List<Activity> getUserActivities(User user) {
 		return activityMapper.findByUserId(user.getId());
 	}
