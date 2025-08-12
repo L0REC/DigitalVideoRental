@@ -9,23 +9,32 @@
 </head>
 
 <body>
-	<div class="container">
-		<h1>ログイン</h1>
-
-		<p th:if="${errorMsg}">[[${errorMsg}]]</p>
-
-		<form action="" method="post">
-			<p>ログインID:
-				<input type="text" name="loginId">
-			</p>
-
-			<p>パスワード:
-				<input type="password" name="pass">
-			</p>
-			<p><input type="submit"></p>
-		</form>
-		<p><a th:href="@{/registration}">新ユーザー登録</a></p>
-	</div>
+	<header>
+		<div class="logo">
+			<img src="../images/nedfligz.png" alt="nedfligz" width="650" height="200">
+		</div>
+	</header>
+	<main>
+		<div class="login">
+			<h1>ログイン</h1>
+			<p th:if="${errorMsg}">[[${errorMsg}]]</p>
+			<form action="" method="post">
+				<p>ログインID:
+					<input type="text" name="loginId">
+				</p>
+				<p>パスワード:
+					<input type="password" name="pass">
+				</p>
+				<p>
+					<input type="submit">
+				</p>
+			</form>
+			<p><a th:href="@{/registration}">新ユーザー登録</a></p>
+		</div>
+	</main>
+	<footer>
+		<p>&copy; 2025 nEdFLiGz. All rights reserved.</p>
+	</footer>
 </body>
 
 </html>
