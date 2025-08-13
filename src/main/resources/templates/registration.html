@@ -24,17 +24,17 @@
 			<h1>新ユーザー登録</h1>
 			</p>
 			<form action="" method="post" th:object="${user}">
-				<span th:errors="*{username}" class="error"></span>
+				<p><span th:errors="*{username}" class="error"></span></p>
 				<label for="username">ユーザーネーム: </label>
 				<p><input type="text" th:field="*{username}"></p>
 
 
-				<span th:errors="*{email}" class="error"></span>
+				<p><span th:errors="*{email}" class="error"></span></p>
 				<label for="email">メールアドレス: </label>
 				<p><input type="email" th:field="*{email}"></p>
 
 
-				<span th:errors="*{password}" class="error"></span>
+				<p><span th:errors="*{password}" class="error"></span></p>
 				<label for="password">パスワード: </label>
 				<p><input type="password" th:field="*{password}"></p>
 
