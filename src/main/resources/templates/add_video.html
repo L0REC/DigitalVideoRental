@@ -15,31 +15,39 @@
 			<h1>動画の追加</h1>
 
 			<form action="" method="post" th:object="${video}">
-				<span th:errors="*{title}" class="error"></span>
-				<p>タイトル: <input type="text" th:field="*{title}"></p>
+				<p><span th:errors="*{title}" class="error"></span></p>
+				<label for="title">タイトル: </label>
+				<p><input type="text" th:field="*{title}"></p>
 
-				<span th:errors="*{description}" class="error"></span>
-				<p>説明: <input type="text" th:field="*{description}"></p>
+				<p><span th:errors="*{description}" class="error"></span></p>
+				<label for="description">説明: </label>
+				<p><textarea rows="5" cols="40" th:field="*{description}"></textarea></p>
 
-				<span th:errors="*{genre}" class="error"></span>
-				<p>ジャンル: <input type="text" th:field="*{genre}"></p>
+				<p><span th:errors="*{genre}" class="error"></span></p>
+				<label for="genre">ジャンル: </label>
+				<p><input type="text" th:field="*{genre}"></p>
 
-				<span th:errors="*{director}" class="error"></span>
-				<p>監督名: <input type="text" th:field="*{director}"></p>
+				<p><span th:errors="*{director}" class="error"></span></p>
+				<label for="director">監督名: </label>
+				<p><input type="text" th:field="*{director}"></p>
 
-				<span th:errors="*{cast}" class="error"></span>
-				<p>出演者: <input type="text" th:field="*{cast}"></p>
+				<p><span th:errors="*{cast}" class="error"></span></p>
+				<label for="cast">出演者: </label>
+				<p><input type="text" th:field="*{cast}"></p>
 
-				<span th:errors="*{release}" class="error"></span>
-				<p>公開年: <input type="number" th:field="*{release}" min="1900" max="2100" required></p>
+				<p><span th:errors="*{release}" class="error"></span></p>
+				<label for="release">公開年: </label>
+				<p><input type="number" th:field="*{release}" min="1900" max="2100" required></p>
 
-				<span th:errors="*{duration}" class="error"></span>
-				<p>上映時間: <input type="number" th:field="*{duration}"></p>
+				<p><span th:errors="*{duration}" class="error"></span></p>
+				<label for="duration">上映時間: </label>
+				<p><input type="number" th:field="*{duration}"></p>
 
-				<span th:errors="*{rating}" class="error"></span>
-				<p>評価: <input type="number" th:field="*{rating}" min="0" max="10" step="0.1" required></p>
+				<p><span th:errors="*{rating}" class="error"></span></p>
+				<label for="rating">評価: </label>
+				<p><input type="number" th:field="*{rating}" min="0" max="10" step="0.1" required></p>
 
-				<input type="submit">
+				<input type="submit" value="登録" class="btn btn-success">
 			</form>
 
 			<p><a th:href="@{/dashboard}">戻る</a></p>
