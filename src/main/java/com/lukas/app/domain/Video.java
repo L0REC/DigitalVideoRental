@@ -44,4 +44,5 @@ public class Video {
 	@DecimalMax(value = "10.0", message = "評価は、10以下")
 	private Float rating;
 	
+	private String thumbnailUrl;
 }

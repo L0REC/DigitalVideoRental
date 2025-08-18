@@ -25,7 +25,7 @@ public class VideoController {
 	private final VideoService service;
 	
 	// 1 ページ当たりの表示人数
-	private final int NUM_PER_PAGE = 3;
+	private final int NUM_PER_PAGE = 9;
 	
 	
 	@GetMapping

@@ -21,73 +21,58 @@
 
 		<h3 th:if="${searchedBy}">「[[${searchedBy}]]」で絞り込み中</h3>
 
-		<table border="1">
-			<tr>
-				<th>ID</th>
-				<th>タイトル</th>
-				<th>あらすじ</th>
-				<th>ジャンル</th>
-				<th>監督</th>
-				<th>出演者</th>
-				<th>公開日</th>
-				<th>上映時間</th>
-				<th>評価</th>
-			</tr>
-			<tr th:each="video : ${videos}">
-				<td>[[${video.id}]]</td>
-				<td>[[${video.title}]]</td>
-				<td>[[${video.description}]]</td>
-				<td>[[${video.genre}]]</td>
-				<td>[[${video.director}]]</td>
-				<td>[[${video.cast}]]</td>
-				<td>[[${video.release}]]</td>
-				<td>[[${video.duration}]]</td>
-				<td>[[${video.rating}]]</td>
-				<td th:if="${session.user != null and session.user.role.name() == 'Admin'}">
-					<a th:href="@{/catalog/remove/{id}(id=${video.id})}" th:data-title="${video.title}"
-						class="btn btn-danger delete">削除
-					</a>
-				</td>
-			</tr>
-		</table>
+		<div class="tile-container">
+			<div class="tile" th:each="video : ${videos}">
+				<div class="tile-background" th:style="'background-image: url(' + ${video.thumbnailUrl} + ')'">
+					<div class="tile-content">
+						<div>[[${video.title}]]</div>
+						<div>[[${video.rating}]]</div>
+						<div th:if="${session.user != null and session.user.role.name() == 'Admin'}">
+							<a th:href="@{/catalog/remove/{id}(id=${video.id})}" th:data-title="${video.title}"
+								class="btn btn-danger delete">削除</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-		<!--ページネーションスタート-->
-		<div th:if="${totalPages >= 2}" class="container2">
-			<ul class="pagination">
-				<!--前のページへ-->
-				<th:block th:switch="${page}">
-					<li th:case="1" class="page-item disabled">
-						<a class="page-link" href="">&laquo;</a>
-					</li>
-					<li th:case="*" class="page-item">
-						<a class="page-link" th:href="@{/catalog(page=${page - 1})}">&laquo;</a>
-					</li>
-				</th:block>
-
-				<!--ページ番号-->
-				<th:block th:each="index : ${#numbers.sequence(1, totalPages)}">
-					<th:block th:switch="${index}">
-						<li th:case="${page}" class="page-item active">
-							<a class="page-link" href="">[[${index}]]</a>
+			<!--ページネーションスタート-->
+			<div th:if="${totalPages >= 2}" class="container2">
+				<ul class="pagination">
+					<!--前のページへ-->
+					<th:block th:switch="${page}">
+						<li th:case="1" class="page-item disabled">
+							<a class="page-link" href="">&laquo;</a>
 						</li>
 						<li th:case="*" class="page-item">
-							<a class="page-link" th:href="@{/catalog(page=${index})}">[[${index}]]</a>
+							<a class="page-link" th:href="@{/catalog(page=${page - 1})}">&laquo;</a>
 						</li>
 					</th:block>
-				</th:block>
 
-				<!--次のページへ-->
-				<th:block th:switch="${page}">
-					<li th:case="${totalPages}" class="page-item disabled">
-						<a class="page-link" th:href="@{/catalog(page=${page + 1})}">&raquo;</a>
-					</li>
-				</th:block>
+					<!--ページ番号-->
+					<th:block th:each="index : ${#numbers.sequence(1, totalPages)}">
+						<th:block th:switch="${index}">
+							<li th:case="${page}" class="page-item active">
+								<a class="page-link" href="">[[${index}]]</a>
+							</li>
+							<li th:case="*" class="page-item">
+								<a class="page-link" th:href="@{/catalog(page=${index})}">[[${index}]]</a>
+							</li>
+						</th:block>
+					</th:block>
+
+					<!--次のページへ-->
+					<th:block th:switch="${page}">
+						<li th:case="${totalPages}" class="page-item disabled">
+							<a class="page-link" th:href="@{/catalog(page=${page + 1})}">&raquo;</a>
+						</li>
+					</th:block>
+			</div>
+			<!-- ページネーションを表示:end -->
+
+			<p><a th:href="@{/dashboard}">戻る</a></p>
+
 		</div>
-		<!-- ページネーションを表示:end -->
-
-		<p><a th:href="@{/dashboard}">戻る</a></p>
-
-	</div>
 </body>
 <script>
 	document.addEventListener("DOMContentLoaded", function () {

@@ -13,6 +13,7 @@
 		<result column="release_year" property="release" />
 		<result column="duration" property="duration" />
 		<result column="rating" property="rating" />
+		<result column="thumbnail_url" property="thumbnailUrl" />
 	</resultMap>
 	
 	<select id="selectVideos" resultMap="VideoResultMap">
@@ -25,7 +26,8 @@
 				cast,
 				release_year,
 				duration,
-				rating
+				rating,
+				thumbnail_url
 			FROM videos
 			WHERE title LIKE CONCAT('%', #{title}, '%')
 	</select>
@@ -40,7 +42,8 @@
 				cast,
 				release_year,
 				duration,
-				rating
+				rating,
+				thumbnail_url
 			FROM videos
 			LIMIT #{offset}, #{limit}
 	</select>
