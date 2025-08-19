@@ -60,6 +60,21 @@ public class VideoController {
 		return "add_video";
 	}
 	
+	@GetMapping("/details/{id}")
+	public String showDetails(@PathVariable Integer id,
+							   RedirectAttributes ra,
+							   Model model) {
+		Video video = service.getVideoById(id);
+		
+		if(video==null) {
+			ra.addFlashAttribute("statusMessage", "動画を見つけませでした");
+			return "redirect:/catalog";
+		}
+		
+		model.addAttribute("video", video);
+		return "details";
+	}
+	
 	@PostMapping("/add")
 	public String add(@Valid Video video, Errors errors) {
 		if (errors.hasErrors()) {

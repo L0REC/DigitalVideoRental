@@ -41,6 +41,12 @@ public class VideoServiceImpl implements VideoService {
 	}
 	
 	@Override
+	public Video getVideoById(Integer id) {
+		return videoMapper.selectVideoById(id);
+	} 
+	
+	
+	@Override
 	public void save(Video video) {
 		videoMapper.addVideo(video);
 	}

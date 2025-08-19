@@ -19,6 +19,8 @@ public interface VideoMapper {
 							  @Param("limit") int limit);
 	Long count();
 	
+	Video selectVideoById(Integer id);
+	
 	void addVideo(Video video);
 	
 	void rmVideo(Integer id);

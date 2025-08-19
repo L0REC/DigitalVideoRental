@@ -13,6 +13,8 @@ public interface VideoService {
 	List<Video> getVideoListByPage(int page, int numPerPage);
 	int getTotalPages(int numPerPage);
 	
+	Video getVideoById(Integer id);
+	
 	void save(Video video);
 	
 	void remove(Integer id);

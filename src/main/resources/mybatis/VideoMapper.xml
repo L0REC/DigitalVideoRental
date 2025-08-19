@@ -52,6 +52,21 @@
 		SELECT COUNT(*) FROM videos
 	</select>
 	
+	<select id="selectVideoById" parameterType="int" resultMap="VideoResultMap">
+		SELECT
+				id,
+				title,
+				description,
+				genre,
+				director,
+				cast,
+				release_year,
+				duration,
+				rating,
+				thumbnail_url
+		FROM videos
+		WHERE videos.id = #{id}
+	</select>
 	<insert id="addVideo" parameterType="com.lukas.app.domain.Video">
 		INSERT INTO videos
 			(title, description, genre, director, cast, release_year, duration, rating)

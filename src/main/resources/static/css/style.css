@@ -119,6 +119,10 @@ main {
 	padding: 10px;
 }
 
+.pagination-container {
+	margin: 0 auto;
+}
+
 .back-link {
 	margin-top: 20px;
 }

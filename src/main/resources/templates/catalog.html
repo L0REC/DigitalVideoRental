@@ -23,20 +23,23 @@
 
 		<div class="tile-container">
 			<div class="tile" th:each="video : ${videos}">
-				<div class="tile-background" th:style="'background-image: url(' + ${video.thumbnailUrl} + ')'">
-					<div class="tile-content">
-						<div>[[${video.title}]]</div>
-						<div>[[${video.rating}]]</div>
-						<div th:if="${session.user != null and session.user.role.name() == 'Admin'}">
-							<a th:href="@{/catalog/remove/{id}(id=${video.id})}" th:data-title="${video.title}"
-								class="btn btn-danger delete">削除</a>
+				<a th:href="@{catalog/details/{id}(id=${video.id})}" class="tile-link">
+					<div class="tile-background" th:style="'background-image: url(' + ${video.thumbnailUrl} + ')'">
+						<div class="tile-content">
+							<div>[[${video.title}]]</div>
+							<div>[[${video.rating}]]</div>
+							<div th:if="${session.user != null and session.user.role.name() == 'Admin'}">
+								<a th:href="@{/catalog/remove/{id}(id=${video.id})}" th:data-title="${video.title}"
+									class="btn btn-danger delete">削除</a>
+							</div>
 						</div>
 					</div>
-				</div>
+				</a>
 			</div>
 		</div>
-
-		<!--ページネーションスタート-->
+	</div>
+	<!--ページネーションスタート-->
+	<div class="pagination-container">
 		<div th:if="${totalPages >= 2}" class="container2">
 			<ul class="pagination">
 				<!--前のページへ-->
@@ -68,11 +71,12 @@
 					</li>
 				</th:block>
 		</div>
-		<!-- ページネーションを表示:end -->
-
-		<p><a th:href="@{/dashboard}">戻る</a></p>
-
 	</div>
+	<!-- ページネーションを表示:end -->
+	<div class="back-link">
+		<a th:href="@{/dashboard}">← ダッシュボードに戻る</a>
+	</div>
+</div>
 	<footer>
 		<p>&copy; 2025 nEdFLiGz. All rights reserved.</p>
 	</footer>
