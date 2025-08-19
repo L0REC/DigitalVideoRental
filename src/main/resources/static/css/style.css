@@ -1,8 +1,10 @@
 @charset "UTF-8";
 
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+table,
+th,
+td {
+	border: 1px solid black;
+	border-collapse: collapse;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -12,34 +14,34 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 div h1 p a {
-  font-size: 18px; 
+	font-size: 18px;
 }
 
 body {
-	  background-color: black;
-	  background-image: url('/images/bg1.jpg');
-	  background-repeat: no-repeat;
-	  background-size: cover; 
-	  background-position: center;
-	  min-height: 100vh;
-	  margin: 0;
-	  padding: 0;
-	  display: flex;
-	  flex-direction: column;
-	}
+	background-color: black;
+	background-image: url('/images/bg1.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+}
 
 header .logo {
 	text-align: center;
 	padding: 20px;
-}	
+}
 
 main {
 	flex: 1;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  padding: 20px;
-}	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
 
 .container {
 	background-color: rgba(255, 255, 255, 0.9);
@@ -53,6 +55,7 @@ main {
 	color: #f00;
 	margin-bottom: 0;
 }
+
 .login {
 	background-color: rgba(255, 255, 255, 0.9);
 	padding: 2rem;
@@ -60,14 +63,33 @@ main {
 	margin-top: 2rem;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	max-width: 25rem;
-	
+
+}
+
+.add-form {
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 2rem;
+	border-radius: 10px;
+	margin-top: 2rem;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	max-width: 25rem;
+}
+
+.dashboard {
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 2rem;
+	border-radius: 10px;
+	margin-top: 2rem;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	max-width: 30rem;
 }
 
 .tile-container {
 	display: grid;
-	grid-template-columns: auto auto auto;
-	padding: 10px;
-	gap: 5px;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	max-width: 800px;
+	gap: 20px;
+	margin: 0 auto;
 }
 
 .tile {
@@ -102,10 +124,10 @@ main {
 }
 
 footer {
-    background: #1a1a2e;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    width: 100%;
+	background: #1a1a2e;
+	color: white;
+	padding: 20px;
+	text-align: center;
+	width: 100%;
 	margin-top: auto;
 }

@@ -9,28 +9,30 @@
 </head>
 
 <body>
-	<div class="container">
-		<h1><strong>Dashboard</strong></h1>
-		<p>ユーザーID: [[${session.user.username}]]</p>
-		<p th:if="${session.user != null}">タイプ: [[${session.user.role.name()}]]</p>
-		<h1><a th:href="@{/catalog}">カタログへ</a></h1>
-		<div th:if="${session.user != null and session.user.role.name() == 'Admin'}">
-			<h1>
-				<p><a th:href="@{/catalog/add}">動画の追加</a></p>
-			</h1>
+	<main>
+		<div class="dashboard">
+			<h1><strong>Dashboard</strong></h1>
+			<p>ユーザーID: [[${session.user.username}]]</p>
+			<p th:if="${session.user != null}">タイプ: [[${session.user.role.name()}]]</p>
+			<h1><a th:href="@{/catalog}">カタログへ</a></h1>
+			<div th:if="${session.user != null and session.user.role.name() == 'Admin'}">
+				<h1>
+					<p><a th:href="@{/catalog/add}">動画の追加</a></p>
+				</h1>
+			</div>
+			<h4>Recent Activity</h4>
+			<table>
+				<tr th:each="activity : ${activities}">
+					<td th:text="${#temporals.format(activity.createdAt, 'MMM dd, HH:mm')}"></td>
+					<td th:text="${activity.type}"></td>
+					<td th:text="${activity.details}"></td>
+				</tr>
+			</table>
+			<p><a th:href="@{/logout}">ログアウト</a></p>
 		</div>
-		<h4>Recent Activity</h4>
-		<table>
-			<tr th:each="activity : ${activities}">
-				<td th:text="${#temporals.format(activity.createdAt, 'MMM dd, HH:mm')}"></td>
-				<td th:text="${activity.type}"></td>
-				<td th:text="${activity.details}"></td>
-			</tr>
-		</table>
-		<p><a th:href="@{/logout}">ログアウト</a></p>
-	</div>
+	</main>
 	<footer>
-		 <p>&copy; 2025 nEdFLiGz. All rights reserved.</p>
+		<p>&copy; 2025 nEdFLiGz. All rights reserved.</p>
 	</footer>
 </body>
 
