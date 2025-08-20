@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Details</title>
+	<meta charset="UTF-8">
+	<title>Details</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
+
 <body>
-<h1>Hello</h1>
+	<div class="container-details">
+		<div class="video-title">
+			<h1>[[${video.title}]]</h1>
+		</div>
+		<div class="content">
+			<img th:src="${video.thumbnailUrl}" alt="image">
+		</div>
+		<div class="content-summary">
+			<div>[[${video.description}]]</div>
+		</div>
+		<div class="content-info">
+			<div><strong>Genre: </strong>[[${video.genre}]]</div>
+			<div><strong>Director: </strong>[[${video.director}]]</div>
+			<div><strong>Cast: </strong>[[${video.cast}]]</div>
+			<div><strong>Duration: </strong>[[${video.duration}]] min</div>
+			<div><strong>Release Date: </strong>[[${video.release}]]</div>
+			<div><strong>Rating: </strong>[[${video.rating}]]</div>
+		</div>
+		<div class="back-link">
+			<a th:href="@{/catalog}">← カタログに戻る</a>
+		</div>
+	</div>
+	<footer>
+		<p>&copy; 2025 nEdFLiGz. All rights reserved.</p>
+	</footer>
 </body>
+
 </html>
