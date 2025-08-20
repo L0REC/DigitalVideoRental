@@ -14,7 +14,7 @@
 			<h1>[[${video.title}]]</h1>
 		</div>
 		<div class="content">
-			<img th:src="${video.thumbnailUrl}" alt="image">
+			<img th:src="${video.thumbnailUrl ?: '/thumbs/default.jpg'}" alt="image">
 		</div>
 		<div class="content-summary">
 			<div>[[${video.description}]]</div>

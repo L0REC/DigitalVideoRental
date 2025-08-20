@@ -6,6 +6,7 @@
 	<title>カタログ</title>
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<script src="/js/catalog.js"></script>
 </head>
 
 <body>
@@ -24,13 +25,13 @@
 		<div class="tile-container">
 			<div class="tile" th:each="video : ${videos}">
 				<a th:href="@{catalog/details/{id}(id=${video.id})}" class="tile-link">
-					<div class="tile-background" th:style="'background-image: url(' + ${video.thumbnailUrl} + ')'">
+					<div class="tile-background" th:style="'background-image: url(' + ${video.thumbnailUrl ?: '/thumbs/default.jpg'} + ')'">
 						<div class="tile-content">
 							<div>[[${video.title}]]</div>
 							<div>[[${video.rating}]]</div>
 							<div th:if="${session.user != null and session.user.role.name() == 'Admin'}">
-								<a th:href="@{/catalog/remove/{id}(id=${video.id})}" th:data-title="${video.title}"
-									class="btn btn-danger delete">削除</a>
+								<button type="button" th:data-video-id="${video.id}" th:data-title="${video.title}"
+									class="btn btn-danger delete">削除</button>
 							</div>
 						</div>
 					</div>
@@ -38,12 +39,12 @@
 			</div>
 		</div>
 		<div class="back-link">
-				<a th:href="@{/dashboard}">← ダッシュボードに戻る</a>
+			<a th:href="@{/dashboard}">← ダッシュボードに戻る</a>
 		</div>
 	</div>
 	<!--ページネーションスタート-->
 	<div class="pagination-container">
-		<div th:if="${totalPages >= 2}" class="container2">
+		<div th:if="${totalPages >= 2}" class="pagination-container">
 			<ul class="pagination">
 				<!--前のページへ-->
 				<th:block th:switch="${page}">
@@ -70,28 +71,19 @@
 				<!--次のページへ-->
 				<th:block th:switch="${page}">
 					<li th:case="${totalPages}" class="page-item disabled">
+						<a class="page-link" href="">&raquo;</a>
+					</li>
+					<li th:case="*" class="page-item">
 						<a class="page-link" th:href="@{/catalog(page=${page + 1})}">&raquo;</a>
 					</li>
 				</th:block>
 		</div>
 	</div>
 	<!-- ページネーションを表示:end -->
-</div>
+	</div>
 	<footer>
 		<p>&copy; 2025 nEdFLiGz. All rights reserved.</p>
 	</footer>
 </body>
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-		document.querySelectorAll(".delete").forEach(btn => {
-			btn.addEventListener("click", function (e) {
-				const title = this.dataset.title;
-				if (!confirm(`「${title}」を削除します。よろしいですか？`)) {
-					e.preventDefault();
-				}
-			});
-		});
-	});
-</script>
 
 </html>
