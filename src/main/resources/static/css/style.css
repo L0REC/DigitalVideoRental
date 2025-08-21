@@ -1,12 +1,5 @@
 @charset "UTF-8";
 
-table,
-th,
-td {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
 	-webkit-appearance: none;
@@ -60,10 +53,8 @@ main {
 	background-color: rgba(255, 255, 255, 0.9);
 	padding: 2rem;
 	border-radius: 10px;
-	margin-top: 2rem;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	max-width: 25rem;
-
 }
 
 .add-form {
@@ -75,13 +66,140 @@ main {
 	max-width: 25rem;
 }
 
-.dashboard {
+.container-dashboard {
 	background-color: rgba(255, 255, 255, 0.9);
 	padding: 2rem;
 	border-radius: 10px;
-	margin-top: 2rem;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	max-width: 30rem;
+	margin: 0 auto;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+	display: grid;
+	grid-template-columns: 220px 1fr;
+	grid-template-rows: 180px 400px;
+	gap: 20px;
+	grid-template-areas:
+		"user-info catalog-link"
+		"activity-log rented-movies";
+	max-width: 1000px;
+	width: 100%;
+	height: 660px;
+}
+
+.user-info {
+	grid-area: user-info;
+	background: rgba(248, 249, 250, 0.8);
+	color: rgb(0, 0, 64);
+	padding: 1.5rem;
+	border-radius: 10px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+user-info h2 {
+	margin: 0 0 1rem 0;
+	font-size: 1.5rem;
+}
+
+user-info p {
+	margin: 0.5rem 0;
+	font-size: 0.9rem;
+	opacity: 0.9;
+}
+
+.catalog-link {
+	grid-area: catalog-link;
+	background: rgba(248, 249, 250, 0.8);
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.catalog-link:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.rented-movies {
+	grid-area: rented-movies;
+	background: rgba(248, 249, 250, 0.8);
+	border-radius: 10px;
+	padding: 1.5rem;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.activity {
+	background: white;
+	border-radius: 8px;
+	padding: 1rem;
+	margin-bottom: 0.8rem;
+	border-left: 4px solid steelblue;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.activity:hover {
+	transform: translateX(2px);
+}
+
+.activity:last-child {
+	margin-bottom: 2rem;
+}
+
+.activity div {
+	margin-bottom: 0.3rem;
+	font-size: 0.8rem;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	max-width: 100%;
+	overflow: hidden;
+}
+
+.activity div:first-child {
+	font-weight: bold;
+	color: grey;
+}
+
+.activity div:nth-child(2) {
+	color: #74b9ff;
+	font-weight: 500;
+}
+
+.activity div:last-child {
+	color: #636e72;
+}
+
+.activity-log {
+	grid-area: activity-log;
+	background: rgba(248, 249, 250, 0.8);
+	border-radius: 10px;
+	padding: 1rem;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	height: 400px;
+	overflow: scroll;
+}
+
+.activity-log h4 {
+	margin: 0 0 1rem 0;
+	color: #495057;
+	font-size: 1.1rem;
+	border-bottom: 2px solid #dee2e6;
+	padding-bottom: 0.5rem;
+	flex-shrink: 0;
+}
+
+.activity-scroll {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 340px;
+	padding-right: 0.5rem;
 }
 
 .tile-container {
@@ -98,6 +216,11 @@ main {
 	padding: 0;
 	font-size: 15px;
 	text-align: center;
+}
+
+.tile:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .tile-background {
@@ -121,36 +244,38 @@ main {
 
 .container-details {
 	display: grid;
-	grid-template-areas: 
-	"header header"
-	"sidebar content"
-	"footer footer";
+	grid-template-areas:
+		"header header"
+		"sidebar content"
+		"footer footer";
 	grid-template-columns: 1fr 2fr;
 	background-color: rgba(255, 255, 255, 0.9);
 	padding: 2rem;
+	gap: 10px;
 	border-radius: 10px;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	max-width: 800px;
 	margin: 2rem auto;
 }
 
-.container-details > div.video-title {
+.container-details>div.video-title {
 	grid-area: header;
 	text-align: center;
 }
 
-.container-details > div.content-summary {
+.container-details>div.content-summary {
 	grid-area: footer;
 	font-style: italic;
 }
 
-.container-details > div.content-info {
+.container-details>div.content-info {
 	grid-area: sidebar;
 }
 
-.container-details > div.content {
+.container-details>div.content {
 	grid-area: content;
 }
+
 .pagination-container {
 	margin: 0 auto;
 }
@@ -166,4 +291,39 @@ footer {
 	text-align: center;
 	width: 100%;
 	margin-top: auto;
+}
+
+@media (max-width: 768px) {
+	.container-dashboard {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto auto auto;
+		grid-template-areas:
+			"user-info"
+			"catalog-link"
+			"activity-log"
+			"rented-movies";
+		margin: 0.5rem;
+		padding: 0.5rem;
+		height: 850px;
+	}
+
+	.catalog-link a {
+		font-size: 1.4rem;
+	}
+
+	.logo img {
+		width: 100%;
+		max-width: 400px;
+		height: auto;
+	}
+
+	.container-details img {
+		width: 100%;
+		max-width: 300px;
+		height: auto;
+	}
+
+	.login {
+		margin-top: -250px;
+	}
 }

@@ -10,25 +10,27 @@
 
 <body>
 	<main>
-		<div class="dashboard">
-			<h1><strong>Dashboard</strong></h1>
-			<p>ユーザーID: [[${session.user.username}]]</p>
-			<p th:if="${session.user != null}">タイプ: [[${session.user.role.name()}]]</p>
-			<h1><a th:href="@{/catalog}">カタログへ</a></h1>
-			<div th:if="${session.user != null and session.user.role.name() == 'Admin'}">
-				<h1>
-					<p><a th:href="@{/catalog/add}">動画の追加</a></p>
-				</h1>
+		<div class="container-dashboard">
+			<div class="user-info">
+				<h2><strong>Dashboard</strong></h2>
+				<p>ユーザーID: [[${session.user.username}]]</p>
+				<p th:if="${session.user != null}">タイプ: [[${session.user.role.name()}]]</p>
+				<p><a th:href="@{/logout}">ログアウト</a></p>
 			</div>
-			<h4>Recent Activity</h4>
-			<table>
-				<tr th:each="activity : ${activities}">
-					<td th:text="${#temporals.format(activity.createdAt, 'MMM dd, HH:mm')}"></td>
-					<td th:text="${activity.type}"></td>
-					<td th:text="${activity.details}"></td>
-				</tr>
-			</table>
-			<p><a th:href="@{/logout}">ログアウト</a></p>
+			<div class="activity-log">
+				<h4>Recent Activity</h4>
+					<div class="activity" th:each="activity : ${activities}">
+						<div th:text="${#temporals.format(activity.createdAt, 'MMM dd, HH:mm')}"></div>
+						<div th:text="${activity.type}"></div>
+						<div th:text="${activity.details}"></div>
+					</div>
+			</div>
+			<div class="catalog-link">
+				<h1><a th:href="@{/catalog}">カタログへ</a></h1>
+			</div>
+			<div class="rented-movies">
+				<h1>Under construction</h1>
+			</div>
 		</div>
 	</main>
 	<footer>
