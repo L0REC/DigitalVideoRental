@@ -14,7 +14,9 @@
 			<h1>[[${video.title}]]</h1>
 		</div>
 		<div class="content">
-			<img th:src="${video.thumbnailUrl ?: '/thumbs/default.jpg'}" alt="image">
+			<video width="540" height="540" controls>
+				<source th:src="${video.videoUrl ?: '/videos/default.mp4'}" type="video/mp4"> 
+			</video>
 		</div>
 		<div class="content-summary">
 			<div>[[${video.description}]]</div>
@@ -26,6 +28,7 @@
 			<div><strong>Duration: </strong>[[${video.duration}]] min</div>
 			<div><strong>Release Date: </strong>[[${video.release}]]</div>
 			<div><strong>Rating: </strong>[[${video.rating}]]</div>
+			<div><img th:src="${video.thumbnailUrl ?: '/thumbs/default.jpg'}" width="200" height="200" alt="image"></div>
 		</div>
 		<div class="back-link">
 			<a th:href="@{/catalog}">← カタログに戻る</a>

@@ -45,4 +45,6 @@ public class Video {
 	private Float rating;
 	
 	private String thumbnailUrl;
+	
+	private String videoUrl;
 }
