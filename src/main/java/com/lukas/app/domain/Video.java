@@ -44,7 +44,9 @@ public class Video {
 	@DecimalMax(value = "10.0", message = "評価は、10以下")
 	private Float rating;
 	
+	@Size(max = 50, message = "Urlは、50文字以内")
 	private String thumbnailUrl;
 	
+	@Size(max = 50, message = "Urlは、50文字以内")
 	private String videoUrl;
 }

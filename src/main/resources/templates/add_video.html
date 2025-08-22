@@ -45,11 +45,23 @@
 				<p><span th:errors="*{rating}" class="error"></span></p>
 				<label for="rating">評価: </label>
 				<p><input type="number" th:field="*{rating}" min="0" max="10" step="0.1" required></p>
-
-				<input type="submit" value="登録" class="btn btn-success">
+				
+				<p><span th:errors="*{thumbnailUrl}" class="error"></span></p>
+				<label for="thumbnailUrl">サムネイルUrl: </label>
+				<p><input type="text" th:field="*{thumbnailUrl}" placeholder="/thumbs/"></p>
+				<small>形: /thumbs/video_title</small>
+								
+				<p><span th:errors="*{videoUrl}" class="error"></span></p>
+				<label for="videoUrl">動画Url: </label>
+				<p><input type="text" th:field="*{videoUrl}" placeholder="/videos/"></p>
+				<small>形: /videos/video_title</small><br><br>
+				
+				<input type="submit" value="登録" class="btn btn-success"><br>
 			</form>
 
-			<p><a th:href="@{/dashboard}">戻る</a></p>
+			<div class="back-link">
+				<a th:href="@{/dashboard}">← ダッシュボードに戻る</a>
+			</div>
 		</div>
 	</main>
 </body>

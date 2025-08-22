@@ -73,9 +73,9 @@
 	</select>
 	<insert id="addVideo" parameterType="com.lukas.app.domain.Video">
 		INSERT INTO videos
-			(title, description, genre, director, cast, release_year, duration, rating)
+			(title, description, genre, director, cast, release_year, duration, rating, thumbnail_url, video_url)
 		VALUES
-			(#{title}, #{description}, #{genre}, #{director}, #{cast}, #{release}, #{duration}, #{rating})
+			(#{title}, #{description}, #{genre}, #{director}, #{cast}, #{release}, #{duration}, #{rating}, #{thumbnailUrl}, #{videoUrl})
 	</insert>
 	
 	<delete id="rmVideo" parameterType="int">
