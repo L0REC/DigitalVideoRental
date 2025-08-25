@@ -16,23 +16,23 @@
 			<form action="" method="post" th:object="${video}">
 				<p><span th:errors="*{title}" class="error"></span></p>
 				<label for="title">タイトル: </label>
-				<p><input type="text" th:field="*{title}"></p>
+				<p><input type="text" th:field="*{title}" required></p>
 
 				<p><span th:errors="*{description}" class="error"></span></p>
 				<label for="description">説明: </label>
-				<p><textarea rows="5" cols="40" th:field="*{description}"></textarea></p>
+				<p><textarea rows="5" cols="40" th:field="*{description}" required></textarea></p>
 
 				<p><span th:errors="*{genre}" class="error"></span></p>
 				<label for="genre">ジャンル: </label>
-				<p><input type="text" th:field="*{genre}"></p>
+				<p><input type="text" th:field="*{genre}" required></p>
 
 				<p><span th:errors="*{director}" class="error"></span></p>
 				<label for="director">監督名: </label>
-				<p><input type="text" th:field="*{director}"></p>
+				<p><input type="text" th:field="*{director}" required></p>
 
 				<p><span th:errors="*{cast}" class="error"></span></p>
 				<label for="cast">出演者: </label>
-				<p><input type="text" th:field="*{cast}"></p>
+				<p><input type="text" th:field="*{cast}" required></p>
 
 				<p><span th:errors="*{release}" class="error"></span></p>
 				<label for="release">公開年: </label>
@@ -40,7 +40,7 @@
 
 				<p><span th:errors="*{duration}" class="error"></span></p>
 				<label for="duration">上映時間: </label>
-				<p><input type="number" th:field="*{duration}"></p>
+				<p><input type="number" th:field="*{duration}" required></p>
 
 				<p><span th:errors="*{rating}" class="error"></span></p>
 				<label for="rating">評価: </label>
@@ -48,12 +48,12 @@
 				
 				<p><span th:errors="*{thumbnailUrl}" class="error"></span></p>
 				<label for="thumbnailUrl">サムネイルUrl: </label>
-				<p><input type="text" th:field="*{thumbnailUrl}" placeholder="/thumbs/"></p>
+				<p><input type="text" th:field="*{thumbnailUrl}" placeholder="/thumbs/" required></p>
 				<small>形: /thumbs/video_title</small>
 								
 				<p><span th:errors="*{videoUrl}" class="error"></span></p>
 				<label for="videoUrl">動画Url: </label>
-				<p><input type="text" th:field="*{videoUrl}" placeholder="/videos/"></p>
+				<p><input type="text" th:field="*{videoUrl}" placeholder="/videos/" required></p>
 				<small>形: /videos/video_title</small><br><br>
 				
 				<input type="submit" value="登録" class="btn btn-success"><br>
