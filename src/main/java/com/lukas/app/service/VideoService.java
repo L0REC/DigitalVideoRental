@@ -1,6 +1,7 @@
 package com.lukas.app.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.lukas.app.domain.Video;
 
@@ -20,4 +21,6 @@ public interface VideoService {
 	void remove(Integer id);
 	
 	boolean checkFileExists(String databasePath);
+	
+	Map<Integer, String> createSafeThumbnailMap(List<Video> videos); 
 }

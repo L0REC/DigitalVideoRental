@@ -1,6 +1,8 @@
 package com.lukas.app.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -63,6 +65,17 @@ public class VideoServiceImpl implements VideoService {
 	public boolean checkFileExists(String databasePath) {
 		Resource resource = resourceLoader.getResource("classpath:static" + databasePath);
 		return resource.exists();
+	}
+
+	@Override
+	public Map<Integer, String> createSafeThumbnailMap(List<Video> videos) {
+		Map<Integer, String> checkThumbnailMap = new HashMap<>();
+		for(Video video : videos) {
+			String checkThumbnail = checkFileExists(video.getThumbnailUrl()) ? 
+					video.getThumbnailUrl() : "/thumbs/default.jpg";
+			checkThumbnailMap.put(video.getId(), checkThumbnail);
+		}
+		return checkThumbnailMap;
 	}
 
 	

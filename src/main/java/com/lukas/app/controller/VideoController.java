@@ -1,6 +1,5 @@
 package com.lukas.app.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,13 +36,7 @@ public class VideoController {
 			Model model) {
 		
 		List<Video> videos = service.getVideoListByPage(page, NUM_PER_PAGE);
-		
-		Map<Integer, String> checkThumbnailMap = new HashMap<>();
-		for(Video video : videos) {
-			String checkThumbnail = service.checkFileExists(video.getThumbnailUrl()) ? 
-					video.getThumbnailUrl() : "/thumbs/default.jpg";
-			checkThumbnailMap.put(video.getId(), checkThumbnail);
-		}
+		Map<Integer, String> checkThumbnailMap = service.createSafeThumbnailMap(videos);
 		
 		model.addAttribute("videos", videos);
 		model.addAttribute("checkThumbnailMap", checkThumbnailMap);
@@ -61,8 +54,11 @@ public class VideoController {
 			if(title.isBlank()) {
 				return "redirect:/catalog";
 			}
-			model.addAttribute("searchedBy", title);
-			model.addAttribute("videos", service.searchByTitle(title));
+			List<Video> videos =service.searchByTitle(title);
+			Map<Integer, String> checkThumbnailMap = service.createSafeThumbnailMap(videos);
+			
+			model.addAttribute("checkThumbnailMap", checkThumbnailMap);
+			model.addAttribute("videos", videos);
 		} 
 		return "catalog";
 	}
