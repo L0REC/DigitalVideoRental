@@ -3,6 +3,7 @@ package com.lukas.app.controller;
 import java.util.List;
 import java.util.Map;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lukas.app.domain.User;
 import com.lukas.app.domain.Video;
+import com.lukas.app.service.RentalService;
 import com.lukas.app.service.VideoService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,6 +29,8 @@ import lombok.RequiredArgsConstructor;
 public class VideoController {
 
 	private final VideoService service;
+	
+	private final RentalService rentalService;
 	
 	private final int NUM_PER_PAGE = 9;
 	
@@ -73,9 +78,11 @@ public class VideoController {
 	
 	@GetMapping("/details/{id}")
 	public String showDetails(@PathVariable Integer id,
+							   HttpSession session,
 							   RedirectAttributes ra,
 							   Model model) {
 		Video video = service.getVideoById(id);
+		
 		
 		if(video==null) {
 			ra.addFlashAttribute("statusMessage", "動画を見つけませでした");
@@ -88,9 +95,24 @@ public class VideoController {
 		String checkThumbnailUrl = service.checkFileExists(video.getThumbnailUrl()) ?
 				video.getThumbnailUrl() : "/thumbs/default.jpg";
 		
+		User user= (User) session.getAttribute("user");
+		System.out.println("Debug - userId: " + user);  // Add this
+	    System.out.println("Debug - videoId: " + id);     // Add this
+	    
+	    Integer userId = null;
+		boolean canRent = false;
+		
+		if(user != null) {
+			userId = user.getId();
+			canRent = rentalService.canUserRentVideo(userId, id);
+			System.out.println("Debug - canRent: " + canRent);  // Add this
+		}
+		
 		model.addAttribute("video", video);
 		model.addAttribute("checkVideoUrl", checkVideoUrl);
 		model.addAttribute("checkThumbnailUrl", checkThumbnailUrl);
+		model.addAttribute("canRentVideo", canRent);
+		
 		return "details";
 	}
 	

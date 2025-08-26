@@ -16,23 +16,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RentalServiceImpl implements RentalService {
 
-    private final ActivityServiceImpl activityServiceImpl;
-
 	private final RentalMapper rentalMapper;
 	
 	@Override
-	public boolean isRentalExpired(Integer userId, Integer videoId) {
+	public boolean canUserRentVideo(Integer userId, Integer videoId) {
 		Rental rental = rentalMapper.findRentalByUserVideoAndStatus(userId, videoId, RentalStatus.ACTIVE);
 		if (rental == null) {
 		return true;
 		}
 		return LocalDateTime.now().isAfter(rental.getExpiresAt());
-	}
-
-	@Override
-	public boolean isRentalPossible(Integer userId, Integer videoId) {
-		
-		return false;
 	}
 
 	@Override

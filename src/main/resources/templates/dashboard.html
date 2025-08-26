@@ -32,7 +32,15 @@
 				<h1><a th:href="@{/catalog}">カタログへ</a></h1>
 			</div>
 			<div class="rented-movies">
-				<h1>Under construction</h1>
+				<div>Debug: canRentVideo = [[${canRentVideo}]]</div>
+				<div>Debug: userId from session = [[${session.userId}]]</div>
+				<h3>My Rented Videos</h3>
+				    <div th:each="rental : ${userRentals}" class="rental-item">
+				        <a th:href="@{/videos/{id}(id=${rental.videoId})}">
+				            <span th:text="${rental.videoTitle}">Video Title</span>
+				        </a>
+				        <span th:text="${rental.expiresAt}">Expires: Date</span>
+				    </div>
 			</div>
 		</div>
 	</main>

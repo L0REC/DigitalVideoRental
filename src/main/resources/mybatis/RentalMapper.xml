@@ -8,12 +8,8 @@
 		<result column="video_id" property="videoId" />
 		<result column="rented_at" property="rentedAt" />
 		<result column="expires_at" property="expiresAt" />
-		<result column="status" property="status" />
+		<result column="status" property="status" javaType="com.lukas.app.domain.RentalStatus"/>
 	</resultMap>
-	<select id="findRentalsByUserId" resultMap="RentalResultMap">
-			SELECT * FROM rentals
-			WHERE user_id = #{userId}
-	</select>
 	
 	<select id="findRentalByUserVideoAndStatus" resultMap="RentalResultMap">
 			<![CDATA[
