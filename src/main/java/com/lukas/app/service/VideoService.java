@@ -18,4 +18,6 @@ public interface VideoService {
 	void save(Video video);
 	
 	void remove(Integer id);
+	
+	boolean checkFileExists(String databasePath);
 }

@@ -2,6 +2,8 @@ package com.lukas.app.service;
 
 import java.util.List;
 
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class VideoServiceImpl implements VideoService {
 
 	private final VideoMapper videoMapper;
+	private final ResourceLoader resourceLoader;
 	
 	@Override
 	public List<Video> searchAll() {
@@ -56,4 +59,11 @@ public class VideoServiceImpl implements VideoService {
 		videoMapper.rmVideo(id);
 	}
 
+	@Override
+	public boolean checkFileExists(String databasePath) {
+		Resource resource = resourceLoader.getResource("classpath:static" + databasePath);
+		return resource.exists();
+	}
+
+	
 }

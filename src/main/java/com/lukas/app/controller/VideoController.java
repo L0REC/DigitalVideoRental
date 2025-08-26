@@ -1,5 +1,9 @@
 package com.lukas.app.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import jakarta.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -24,7 +28,6 @@ public class VideoController {
 
 	private final VideoService service;
 	
-	// 1 ページ当たりの表示人数
 	private final int NUM_PER_PAGE = 9;
 	
 	
@@ -32,7 +35,18 @@ public class VideoController {
 	public String all(
 			@RequestParam(name = "page", defaultValue = "1") Integer page,
 			Model model) {
-		model.addAttribute("videos", service.getVideoListByPage(page, NUM_PER_PAGE));
+		
+		List<Video> videos = service.getVideoListByPage(page, NUM_PER_PAGE);
+		
+		Map<Integer, String> checkThumbnailMap = new HashMap<>();
+		for(Video video : videos) {
+			String checkThumbnail = service.checkFileExists(video.getThumbnailUrl()) ? 
+					video.getThumbnailUrl() : "/thumbs/default.jpg";
+			checkThumbnailMap.put(video.getId(), checkThumbnail);
+		}
+		
+		model.addAttribute("videos", videos);
+		model.addAttribute("checkThumbnailMap", checkThumbnailMap);
 		model.addAttribute("page", page);
 		model.addAttribute("totalPages", service.getTotalPages(NUM_PER_PAGE));
 		return "catalog";
@@ -71,7 +85,15 @@ public class VideoController {
 			return "redirect:/catalog";
 		}
 		
+		String checkVideoUrl = service.checkFileExists(video.getVideoUrl()) ?
+				video.getVideoUrl() : "/videos/default.mp4"; 
+		
+		String checkThumbnailUrl = service.checkFileExists(video.getThumbnailUrl()) ?
+				video.getThumbnailUrl() : "/thumbs/default.jpg";
+		
 		model.addAttribute("video", video);
+		model.addAttribute("checkVideoUrl", checkVideoUrl);
+		model.addAttribute("checkThumbnailUrl", checkThumbnailUrl);
 		return "details";
 	}
 	
