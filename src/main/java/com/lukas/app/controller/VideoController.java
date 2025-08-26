@@ -54,7 +54,8 @@ public class VideoController {
 			if(title.isBlank()) {
 				return "redirect:/catalog";
 			}
-			List<Video> videos =service.searchByTitle(title);
+			
+			List<Video> videos = service.searchByTitle(title);
 			Map<Integer, String> checkThumbnailMap = service.createSafeThumbnailMap(videos);
 			
 			model.addAttribute("checkThumbnailMap", checkThumbnailMap);
