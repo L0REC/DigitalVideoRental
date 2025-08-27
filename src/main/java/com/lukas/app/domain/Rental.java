@@ -13,7 +13,7 @@ public class Rental {
 	
 	private Integer videoId;
 	
-	private LocalDateTime rentalAt;
+	private LocalDateTime rentedAt;
 	
 	private LocalDateTime expiresAt;
 	

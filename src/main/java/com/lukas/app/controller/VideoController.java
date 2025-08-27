@@ -83,7 +83,6 @@ public class VideoController {
 							   Model model) {
 		Video video = service.getVideoById(id);
 		
-		
 		if(video==null) {
 			ra.addFlashAttribute("statusMessage", "動画を見つけませでした");
 			return "redirect:/catalog";
@@ -96,8 +95,6 @@ public class VideoController {
 				video.getThumbnailUrl() : "/thumbs/default.jpg";
 		
 		User user= (User) session.getAttribute("user");
-		System.out.println("Debug - userId: " + user);  // Add this
-	    System.out.println("Debug - videoId: " + id);     // Add this
 	    
 	    Integer userId = null;
 		boolean canRent = false;
@@ -105,7 +102,6 @@ public class VideoController {
 		if(user != null) {
 			userId = user.getId();
 			canRent = rentalService.canUserRentVideo(userId, id);
-			System.out.println("Debug - canRent: " + canRent);  // Add this
 		}
 		
 		model.addAttribute("video", video);
