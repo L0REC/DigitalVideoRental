@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lukas.app.domain.Activity;
+import com.lukas.app.domain.Rental;
 import com.lukas.app.domain.User;
 import com.lukas.app.service.ActivityService;
+import com.lukas.app.service.RentalService;
 import com.lukas.app.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,12 +28,18 @@ public class UserController {
 
 	private final UserService service;
 	private final ActivityService activityService;
+	private final RentalService rentalService;
 
 	@GetMapping("/dashboard")
 	public String showDashboard(Model model, HttpSession session) {
+		
 		User user = (User) session.getAttribute("user");
+		
 		List<Activity> activities = activityService.getUserRecentActivities(user, 10);
+		List<Rental> userRentals = rentalService.getUserRentals(user.getId());
+		
 		model.addAttribute("activities", activities);
+		model.addAttribute("userRentals", userRentals);
 		return "dashboard";
 	}
 

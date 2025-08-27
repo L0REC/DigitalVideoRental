@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lukas.app.mapper.VideoMapper">
-	<resultMap id="RentalResultMap" type="com.lukas.app.domain.Rental" >
+<mapper namespace="com.lukas.app.mapper.RentalMapper">
+
+	<resultMap id="RentalResultMap"
+		type="com.lukas.app.domain.Rental">
 		<id column="id" property="id" />
 		<result column="user_id" property="userId" />
 		<result column="video_id" property="videoId" />
 		<result column="rented_at" property="rentedAt" />
 		<result column="expires_at" property="expiresAt" />
-		<result column="status" property="status" javaType="com.lukas.app.domain.RentalStatus"/>
+		<result column="status" property="status"
+			javaType="com.lukas.app.domain.RentalStatus" />
 	</resultMap>
-	
-	<select id="findRentalByUserVideoAndStatus" resultMap="RentalResultMap">
+
+	<select id="findRentalByUserVideoAndStatus"
+		resultMap="RentalResultMap">
 			<![CDATA[
 			SELECT * FROM rentals
 			WHERE user_id = #{userId}
@@ -20,10 +24,21 @@
 			  AND expires_at > NOW()
 			]]>
 	</select>
-	
-	<select id="insertRental">
-			INSERT INTO rentals (user_id, video_id, rental_at, expires_at, status)
-			VALUES (#{userId}, #{videoId}, NOW(), DATE_ADD(NOW(), INTERVAL 72 HOUR), #{status})
+
+	<select id="findRentalByUserId" resultMap="RentalResultMap">
+		<![CDATA[
+		  SELECT * FROM rentals
+		   WHERE user_id = #{userId}
+			 AND expires_at > NOW()
+		ORDER BY rented_at DESC
+		]]>
 	</select>
-	
+
+	<select id="insertRental"
+		parameterType="com.lukas.app.domain.Rental">
+		INSERT INTO rentals (user_id, video_id, rented_at, expires_at, status)
+		VALUES (#{userId}, #{videoId}, NOW(), DATE_ADD(NOW(), INTERVAL 72
+		HOUR), 'ACTIVE')
+	</select>
+
 </mapper>

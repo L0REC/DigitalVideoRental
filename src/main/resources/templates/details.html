@@ -6,6 +6,7 @@
 	<title>Details</title>
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<script src="/js/rental.js"></script>
 </head>
 
 <body>
@@ -28,8 +29,8 @@
 			<div><strong>Duration: </strong>[[${video.duration}]] min</div>
 			<div><strong>Release Date: </strong>[[${video.release}]]</div>
 			<div><strong>Rating: </strong>[[${video.rating}]]</div>
-			<div><img th:src="${checkThumbnailUrl}" width="200" height="200" alt="image"></div>
-			<button id="rentButton" th:if="${canRentVideo}" class="btn btn-primary">Rent</button>
+			<div><img th:src="${checkThumbnailUrl}" width="200" height="200" alt="image"></div><br>
+			<button id="rentButton" th:if="${canRentVideo}" th:data-video-id="${video.id}" class="btn btn-secondary">レンタルする(72時間)</button>
 		</div>
 		<div class="back-link">
 			<a th:href="@{/catalog}">← カタログに戻る</a>

@@ -1,6 +1,7 @@
 package com.lukas.app.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,8 +29,15 @@ public class RentalServiceImpl implements RentalService {
 	}
 
 	@Override
+	public List<Rental> getUserRentals(Integer userId) {
+		return rentalMapper.findRentalByUserId(userId);
+	}
+	
+	@Override
 	public void insertRental(Integer userId, Integer videoId) {
 		rentalMapper.insertRental(userId, videoId);
 	}
+
+	
 
 }

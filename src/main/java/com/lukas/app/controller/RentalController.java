@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lukas.app.domain.User;
 import com.lukas.app.service.RentalService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,16 +24,17 @@ public class RentalController {
 	public String createRental(@RequestParam Integer videoId, 
 											 HttpSession session,
 											 Model model) {
-		Integer userId = (Integer) session.getAttribute("userId");
+		User user = (User) session.getAttribute("user");
 		
-		if(userId == null) {
+		if(user == null) {
 			model.addAttribute("error", "ユーザーはログインしてません");
 			return "redirect:/login";
 		}
 		
+		Integer userId = user.getId();
 		rentalService.insertRental(userId, videoId);
 		
 		model.addAttribute("success", "レンタル済みです");
-		return "redirect:/videos/" + videoId;
+		return "redirect:/catalog";
 	}
 }
