@@ -33,9 +33,9 @@
 			</div>
 			<div class="rented-movies">
 				<h3>My Rented Videos</h3>
-				    <div th:each="rental : ${userRentals}">
-				        <p>Video ID: [[${rental.videoId}]]</p>
-				        <p>Expires: [[${rental.expiresAt}]]</p>
+				    <div th:each="rental : ${userRentals}" class="rental-card"
+					 th:style="'background-image: url(/thumbs/default.jpg)'">
+				        <div class="rental-overlay">Expires: [[${rental.expiresAt}]]</div>
 				    </div>
 			</div>
 		</div>

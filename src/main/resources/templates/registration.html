@@ -22,15 +22,15 @@
 			</p>
 			<form action="" method="post" th:object="${user}">
 				<p><span th:errors="*{username}" class="error"></span></p>
-				<label for="username">ユーザーネーム: </label>
+				<label for="username" class="reg-field">ユーザーネーム: </label>
 				<p><input type="text" th:field="*{username}"></p>
 
 				<p><span th:errors="*{email}" class="error"></span></p>
-				<label for="email">メールアドレス: </label>
+				<label for="email" class="reg-field">メールアドレス: </label>
 				<p><input type="email" th:field="*{email}"></p>
 
 				<p><span th:errors="*{password}" class="error"></span></p>
-				<label for="password">パスワード: </label>
+				<label for="password" class="reg-field">パスワード: </label>
 				<p><input type="password" th:field="*{password}"></p>
 
 				<input type="submit" value="登録" class="btn btn-success">
