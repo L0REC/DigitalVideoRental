@@ -79,6 +79,10 @@ p {
 	color: #dee2e6;
 }
 
+.add-form small {
+	color: rgb(207, 207, 207);
+}
+
 .container-dashboard {
 	background-color: rgb(23, 23, 23, 0.9);
 	padding: 2rem;
