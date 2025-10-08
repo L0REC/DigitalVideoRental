@@ -1,6 +1,8 @@
 package com.lukas.app.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -15,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lukas.app.domain.Activity;
 import com.lukas.app.domain.Rental;
 import com.lukas.app.domain.User;
+import com.lukas.app.domain.Video;
 import com.lukas.app.service.ActivityService;
 import com.lukas.app.service.RentalService;
 import com.lukas.app.service.UserService;
+import com.lukas.app.service.VideoService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,6 +33,7 @@ public class UserController {
 	private final UserService service;
 	private final ActivityService activityService;
 	private final RentalService rentalService;
+	private final VideoService videoService;
 
 	@GetMapping("/dashboard")
 	public String showDashboard(Model model, HttpSession session) {
@@ -38,8 +43,18 @@ public class UserController {
 		List<Activity> activities = activityService.getUserRecentActivities(user, 10);
 		List<Rental> userRentals = rentalService.getUserRentals(user.getId());
 		
+		List<Video> rentalVideos = new ArrayList<>();
+		for(Rental rental : userRentals) {
+			rentalVideos.add(videoService.getVideoById(rental.getVideoId()));
+		}
+				
+				
+		Map<Integer, String> checkThumbnailMap = videoService.createSafeThumbnailMap(rentalVideos);
+		
 		model.addAttribute("activities", activities);
 		model.addAttribute("userRentals", userRentals);
+		model.addAttribute("checkThumbnailMap", checkThumbnailMap);
+		
 		return "dashboard";
 	}
 

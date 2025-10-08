@@ -35,7 +35,7 @@
 				<h3>My Rented Videos</h3>
 				<div class="rented-list">
 					<a th:each="rental : ${userRentals}" th:href="@{/catalog/details/{id}(id=${rental.videoId})}" class="rental-card tile-link"						
-						th:style="'background-image: url(/thumbs/default.jpg)'">
+						th:style="'background-image: url(' + ${checkThumbnailMap[rental.videoId]} + ')'">
 							<div class="rental-overlay">Expires: [[${rental.expiresAt}]]</div>   
 					  </a>
 				</div>
