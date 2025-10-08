@@ -31,15 +31,13 @@
 			<div class="catalog-link">
 				<h1><a th:href="@{/catalog}">カタログへ</a></h1>
 			</div>
-			<div>="rented-movies">
+			<div class="rented-movies">
 				<h3>My Rented Videos</h3>
 				<div class="rented-list">
-					<div th:each="rental : ${userRentals}" class="rental-card" 
+					<a th:each="rental : ${userRentals}" th:href="@{/catalog/details/{id}(id=${rental.videoId})}" class="rental-card tile-link"						
 						th:style="'background-image: url(/thumbs/default.jpg)'">
-					  <a th:href="@{/catalog/details/{id}(id=${rental.videoId})}" class="tile-link">						
 							<div class="rental-overlay">Expires: [[${rental.expiresAt}]]</div>   
 					  </a>
-					</div>
 				</div>
 			</div>
 		</div>
