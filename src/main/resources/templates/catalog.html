@@ -24,7 +24,7 @@
 
 		<div class="tile-container">
 			<div class="tile" th:each="video : ${videos}">
-				<a th:href="@{catalog/details/{id}(id=${video.id})}" class="tile-link">
+				<a th:href="@{/catalog/details/{id}(id=${video.id})}" class="tile-link">
 					<div class="tile-background" th:style="'background-image: url(' + ${checkThumbnailMap[video.id]} + ')'">
 						<div class="tile-content">
 							<div>[[${video.title}]]</div>
