@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lukas.app.mapper.RentalLogMapper">
+	<resultMap id="RentalLogResultMap" type="com.lukas.app.domain.RentalLog">
+		<id column="id" property="id"/>
+		<result column="user_id" property="userId"/>
+		<result column="activity_type" property="activityType"/>
+		<result column="details" property="details"/>
+		<result column="created_at" property="createdAt"/>
+	</resultMap>
+	
+	<insert id="insert">
+		INSERT INTO rental_logs (user_id, activity_type, details, created_at)
+		VALUES (#{userId}, #{activityType}, #{details}, #{createdAt})
+	</insert>
+	
+	<select id="findRecentByUserId" resultMap="RentalLogResultMap">
+		SELECT * FROM rental_logs
+		WHERE user_id = #{userId}
+		ORDER BY created_at DESC
+		LIMIT #{limit}
+	</select>
+</mapper>

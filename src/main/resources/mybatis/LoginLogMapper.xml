@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lukas.app.mapper.LoginLogMapper">
+	<resultMap id="LoginLogResultMap" type="com.lukas.app.domain.LoginLog">
+		<id property="id" column="id"/>
+		<result column="user_id" property="userId"/>
+		<result column="details" property="details"/>
+		<result column="created_at" property="createdAt"/> 
+	</resultMap>
+	
+	<insert id="insert">
+		INSERT INTO login_logs (user_id, details, created_at)
+		VALUES (#{userID}), #{details}, #{createdAt})
+	</insert>
+	
+	<select id="findRecentByUserId" resultMap="LoginLogResultMap">
+		SELECT * FROM login_logs
+		WHERE user_id = #{userId}
+		ORDER BY creted_at DESC
+		LIMIT #{limit}
+	</select>
+	
+	<delete id="deleteOlderThan">
+		DELETE FROM login_logs
+		WHERE created_at &lt; #{cutoff}
+	</delete>
+</mapper>
