@@ -14,4 +14,6 @@ public interface ActivityMapper {
 	List<Activity>findByUserId(Integer userId);
 	List<Activity>findRecentByUserId(@Param("userId") Integer userId,
 									 @Param("limit") Integer limit);
+	
+	List<Activity> findRecentByUserIdFromView(Integer userId, int limit);
 }

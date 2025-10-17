@@ -30,4 +30,11 @@
 		ORDER BY created_at DESC
 		LIMIT #{limit}
 	</select>
+	
+	<select id="findRecentByUserIdFromView" resultMap="activityResultMap">
+		SELECT * FROM user_activities_view
+		WHERE user_id = #{userId}
+		ORDER BY created_at DESC
+		LIMIT #{limit}
+	</select>
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lukas.app.domain.User;
+import com.lukas.app.service.RentalLogService;
 import com.lukas.app.service.RentalService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class RentalController {
 
 	private final RentalService rentalService;
+	private final RentalLogService rentalLogService;
 	
 	@PostMapping
 	public String createRental(@RequestParam Integer videoId, 
@@ -33,6 +35,7 @@ public class RentalController {
 		
 		Integer userId = user.getId();
 		rentalService.insertRental(userId, videoId);
+		rentalLogService.logRental(user, "RENTAL_START", "レンタル開始: 商品ID " + videoId);
 		
 		model.addAttribute("success", "レンタル済みです");
 		return "redirect:/catalog";

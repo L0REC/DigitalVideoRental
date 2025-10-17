@@ -12,7 +12,7 @@
 	
 	<insert id="insert">
 		INSERT INTO login_logs (user_id, details, created_at)
-		VALUES (#{userID}), #{details}, #{createdAt})
+		VALUES (#{userId}, #{details}, #{createdAt})
 	</insert>
 	
 	<select id="findRecentByUserId" resultMap="LoginLogResultMap">

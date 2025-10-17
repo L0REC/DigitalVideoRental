@@ -40,7 +40,7 @@ public class UserController {
 		
 		User user = (User) session.getAttribute("user");
 		
-		List<Activity> activities = activityService.getUserRecentActivities(user, 10);
+		List<Activity> activities = activityService.getUserRecentActivitiesFromView(user, 10);
 		List<Rental> userRentals = rentalService.getUserRentals(user.getId());
 		
 		List<Video> rentalVideos = new ArrayList<>();

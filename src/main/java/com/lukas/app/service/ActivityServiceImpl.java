@@ -34,4 +34,10 @@ public class ActivityServiceImpl implements ActivityService {
 		return activityMapper.findRecentByUserId(user.getId(), limit);
 	}
 
+	@Override
+	public List<Activity> getUserRecentActivitiesFromView(User user, int limit) {
+		return activityMapper.findRecentByUserIdFromView(user.getId(), limit);
+	}
+
+	
 }
