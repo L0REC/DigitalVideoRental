@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lukas.app.domain.User;
 import com.lukas.app.service.ActivityService;
-import com.lukas.app.service.LoginServiceImpl;
+import com.lukas.app.service.LoginService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class AuthController {
 
-	private final LoginServiceImpl service;
+	private final LoginService service;
 	private final ActivityService activityService;
 	
 	@GetMapping("/login")
