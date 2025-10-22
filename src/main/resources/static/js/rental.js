@@ -3,9 +3,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	if (rentButton) {
 		rentButton.addEventListener('click', function() {
+
+			if (this.disabled) return;
+			this.disabled = true;
+
+			const originalText = this.textContent;
+			this.textContent = 'レンタル中...';
+
 			const videoId = this.dataset.videoId;
 			const formData = new FormData();
 			formData.append('videoId', videoId);
+
 			fetch('/rental', {
 				method: 'POST',
 				body: formData
@@ -15,7 +23,16 @@ document.addEventListener("DOMContentLoaded", function() {
 						location.reload();
 					} else {
 						alert('レンタルエラー');
+
+						this.disabled = false;
+						this.textContent = originalText;
 					}
+				})
+				.catch(error => {
+					console.error('ネットワークエラー:', error);
+					this.disabled = false;
+					this.textContent = originalText;
+					alert('ネットワークエラー');
 				});
 		});
 	}

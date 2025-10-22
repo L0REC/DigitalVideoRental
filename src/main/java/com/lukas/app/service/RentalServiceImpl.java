@@ -18,12 +18,12 @@ import lombok.RequiredArgsConstructor;
 public class RentalServiceImpl implements RentalService {
 
 	private final RentalMapper rentalMapper;
-	
+
 	@Override
 	public boolean canUserRentVideo(Integer userId, Integer videoId) {
 		Rental rental = rentalMapper.findRentalByUserVideoAndStatus(userId, videoId, RentalStatus.ACTIVE);
 		if (rental == null) {
-		return true;
+			return true;
 		}
 		return LocalDateTime.now().isAfter(rental.getExpiresAt());
 	}
@@ -32,12 +32,13 @@ public class RentalServiceImpl implements RentalService {
 	public List<Rental> getUserRentals(Integer userId) {
 		return rentalMapper.findRentalByUserId(userId);
 	}
-	
+
 	@Override
 	public void insertRental(Integer userId, Integer videoId) {
+		if (!canUserRentVideo(userId, videoId)) {
+			throw new IllegalStateException("このビデオは既にレンタル中です");
+		}
+		
 		rentalMapper.insertRental(userId, videoId);
 	}
-
-	
-
 }

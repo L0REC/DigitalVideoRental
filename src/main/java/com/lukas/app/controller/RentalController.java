@@ -34,10 +34,16 @@ public class RentalController {
 		}
 		
 		Integer userId = user.getId();
-		rentalService.insertRental(userId, videoId);
-		rentalLogService.logRental(user, "RENTAL_START", "レンタル開始: 商品ID " + videoId);
 		
-		model.addAttribute("success", "レンタル済みです");
+		try {
+			rentalService.insertRental(userId, videoId);
+			rentalLogService.logRental(user, "RENTAL_START", "レンタル開始: 商品ID " + videoId);
+			model.addAttribute("success", "レンタル済みです");
+		} catch (IllegalStateException e) {
+			model.addAttribute("error", "このビデオは既にレンタル中です");
+			rentalLogService.logRental(user, "RENTAL_FAILED", "レンタル失敗(重複): 商品ID " + videoId);
+		}
+		
 		return "redirect:/catalog";
 	}
 }
